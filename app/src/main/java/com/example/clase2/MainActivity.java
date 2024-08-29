@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     String nombreUsuario;
     String TAG = "Test";
+    Persona datosUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         usuario = (TextView) findViewById(R.id.txvUsuario);
         hola = findViewById(R.id.btnHola);
         mundo = findViewById(R.id.btnMundo);
+        datosUsuario = new Persona(1152705538, (byte) 28, "Sebastian", "Zuluaga");
+
+
 
         hola.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,12 +42,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG,"eSTOY EN EL BOTON");
 
                 Intent pasarDatos = new Intent(MainActivity.this, MainActivity2.class);
-                pasarDatos.putExtra("Nombre","Juan");
-                pasarDatos.putExtra("Edad",20);
+                pasarDatos.putExtra("Nombre",datosUsuario.nombre);
+                pasarDatos.putExtra("Edad",Integer.valueOf(datosUsuario.edad));
                 startActivity(pasarDatos);
 
             }
         });
+
+        Log.d(TAG,datosUsuario.getNombre());
+        datosUsuario.setNombre("Gaia");
+        Log.d(TAG,datosUsuario.getNombre());
+
 
 
     }
